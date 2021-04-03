@@ -32,10 +32,10 @@ object DataSource {
             val index = kotlin.random.Random.nextInt(taskArray.size)
 
             val newTask = Task(
-                    taskArray[(taskArray.indices).random()][0],
+                    taskArray[index][0],
                     getRandDate(),
-                    taskArray[(taskArray.indices).random()][1],
-                    taskArray[(taskArray.indices).random()][0] + "\t\t" + getRandDate()
+                    taskArray[index][1],
+                    taskArray[index][0] + "\t\t" + getRandDate()
 
             )
             _tasks!!.add(newTask)
