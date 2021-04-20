@@ -16,12 +16,13 @@ object DataSource {
             return _tasks!!
         }
 
-    val taskArray =
+    private val taskArray =
             arrayOf(arrayOf("Do homework", "Make a list of tasks for LSM"),
                     arrayOf("Tidy my room", "Put things on their place, vacuum"),
                     arrayOf("Buy new shoes", "Buy running shoes"),
                     arrayOf("Wash dishes", "Turn on the dishwasher"),
                     arrayOf("Do laundry", "Do laundry because I don't have any clean clothes"),
+                    arrayOf("Prepare dinner", "Prepare dinner for the whole family"),
                     arrayOf("Feed dog", "Give my dog something to eat "))
 
     private fun MockTasks() {
