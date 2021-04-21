@@ -27,10 +27,13 @@ object DataSource {
                     arrayOf("Prepare dinner", "Prepare dinner for the whole family"),
                     arrayOf("Feed dog", "Give my dog something to eat "))
 
+    /** Triple<SubjectId, LevelId, ChapterId> defines list of learningprocessdata */
+
+
     private fun MockTasks() {
         _tasks = ArrayList()
 
-        repeat((6..10).random())
+        repeat((3..7).random())
         {
             val index = kotlin.random.Random.nextInt(taskArray.size)
 

@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.thyme.todolist.R
 import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
@@ -67,8 +66,6 @@ class TaskListFragment : Fragment(), TaskItemClickListener {
         Toast.makeText(requireActivity(), "You have choosen task: ${task.name}", Toast.LENGTH_LONG).show()
         }
 
-    fun addTask() {
-        findNavController().navigate(R.id.addTaskFragment)
-    }
+
     }
 
