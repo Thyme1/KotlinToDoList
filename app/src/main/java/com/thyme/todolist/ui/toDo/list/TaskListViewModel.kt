@@ -6,7 +6,7 @@ import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
 
 /**
- * Zawiera informacje aktualnie wybiernego przedmiotu do nauki.
+ * Zawiera informacje aktualnie wybiernego zadania.
  */
 class TaskListViewModel : ViewModel() {
     var subjects: LiveData<ArrayList<Task>> = Repository.getAllTasks()

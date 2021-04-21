@@ -9,5 +9,13 @@
         android:id="@+id/taskListFragment"
         android:name="com.thyme.todolist.ui.toDo.list.TaskListFragment"
         android:label="fragment_task_list"
-        tools:layout="@layout/fragment_task_list" />
+        tools:layout="@layout/fragment_task_list" >
+        <action
+            android:id="@+id/action_taskListFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.thyme.todolist.ui.main.AddTaskFragment"
+        android:label="AddTaskFragment" />
 </navigation>
