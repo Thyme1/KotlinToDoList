@@ -1,6 +1,8 @@
 package com.thyme.todolist.data
 
+import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
+import java.time.LocalTime
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
@@ -36,9 +38,10 @@ object DataSource {
                     taskArray[index][0],
                     getRandDate(),
                     taskArray[index][1],
-                    taskArray[index][0] + "\t\t" + getRandDate()
+                    taskArray[index][0] + "\t\t" + getRandDate(),
+                    time()
 
-            )
+                    )
             _tasks!!.add(newTask)
         }
     }
@@ -59,5 +62,9 @@ object DataSource {
         return start + (Math.random() * (end - start)).roundToInt()
     }
 
+
+    fun time(): String {
+        return LocalTime.of(3, 15).toString();
+    }
 
 }
