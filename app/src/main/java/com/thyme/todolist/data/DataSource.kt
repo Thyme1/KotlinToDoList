@@ -9,7 +9,7 @@ import kotlin.math.roundToInt
 
 object DataSource {
     private var _tasks: ArrayList<Task>? = null
-    val tasks: ArrayList<Task>
+    var tasks: ArrayList<Task>
         get() {
             if (_tasks == null) {
                 MockTasks()
