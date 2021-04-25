@@ -1,5 +1,6 @@
 package com.thyme.todolist.data
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 object Repository {
@@ -10,7 +11,7 @@ object Repository {
 
     }
 
-    fun getAllTasks(): MutableLiveData<ArrayList<Task>> {
+    fun getAllTasks(): LiveData<ArrayList<Task>> {
         return tasks
 
     }

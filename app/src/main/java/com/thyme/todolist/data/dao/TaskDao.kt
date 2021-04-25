@@ -12,9 +12,9 @@ class TaskDao {
     companion object{
         public const val SHARED_PREFERENCES_TAG = "taskData"
     }
-    init{
-        readFromSharedPreferences()
-    }
+//    init{
+//        readFromSharedPreferences()
+//    }
     fun getAllTasks(): ArrayList<Task> {
         return DataSource.tasks
     }
@@ -62,8 +62,7 @@ class TaskDao {
         val readedData: ArrayList<Task> = loadListFromSharedPreferneces(
                 context, SHARED_PREFERENCES_TAG
         )
-        if(DataSource.tasks == null)
-            DataSource.tasks =  ArrayList<Task>()
+
         DataSource.tasks.clear()
         DataSource.tasks = readedData
     }

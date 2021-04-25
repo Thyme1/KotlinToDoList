@@ -8,14 +8,16 @@ import kotlin.math.roundToInt
 
 
 object DataSource {
-    private var _tasks: ArrayList<Task>? = null
-    var tasks: ArrayList<Task>
+    var _tasks: ArrayList<Task>? = null
+
+    var tasks: ArrayList<Task> = ArrayList<Task>()
         get() {
             if (_tasks == null) {
                 MockTasks()
             }
             return _tasks!!
         }
+
 
     private val taskArray =
             arrayOf(arrayOf("Do homework", "Make a list of tasks for LSM"),
