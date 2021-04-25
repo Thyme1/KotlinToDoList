@@ -33,7 +33,7 @@
             tools:listitem="@layout/item_task" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonAdd"
             android:onClick="@{() -> taskListFragment.addTask()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
