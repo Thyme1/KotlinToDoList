@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_launcher_background"
-        android:text="@{task.nameAndDate.concat('\t' + task.hour)}"
+        android:text="@{task.nameAndDate}"
         android:onClick="@{() -> clickListener.chooseTask(task)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

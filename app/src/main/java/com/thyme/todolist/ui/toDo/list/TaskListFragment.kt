@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.thyme.todolist.MainApplication
 import com.thyme.todolist.R
+import com.thyme.todolist.data.Database
 import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.FragmentTaskListBinding
@@ -80,6 +82,13 @@ class TaskListFragment : Fragment(), TaskItemClickListener {
 
     fun addTask() {
         findNavController().navigate(R.id.action_taskListFragment_to_addTaskFragment)
+    }
+
+    fun clearPreferences() {
+        val context = MainApplication.applicationContext()
+        Database.taskDao.clearSharedPreferences(context, "taskData")
+        Toast.makeText(requireActivity(), "SharedPreferences cleared", Toast.LENGTH_LONG).show()
+
     }
     }
 

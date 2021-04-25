@@ -2,6 +2,7 @@ package com.thyme.todolist.data.dao
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.thyme.todolist.MainApplication
@@ -9,10 +10,11 @@ import com.thyme.todolist.data.DataSource
 import com.thyme.todolist.data.Task
 
 class TaskDao {
-    companion object{
+    companion object {
         public const val SHARED_PREFERENCES_TAG = "taskData"
     }
-//    init{
+
+    //    init{
 //        readFromSharedPreferences()
 //    }
     fun getAllTasks(): ArrayList<Task> {
@@ -39,16 +41,17 @@ class TaskDao {
 
     //region SharedPreferences helper methods
 
-    fun saveInSharedPreferences(){
+    fun saveInSharedPreferences() {
         val context = MainApplication.applicationContext()
         var dataToSave: ArrayList<Task> = arrayListOf()
         dataToSave = DataSource.tasks
 
     }
+
     private fun saveListInSharedPreferences(
             context: Context,
             sharedPreferencesTag: String,
-            dataToSave: java.util.ArrayList<Task>){
+            dataToSave: java.util.ArrayList<Task>) {
         var sharedPreferences = context.getSharedPreferences(sharedPreferencesTag, Context.MODE_PRIVATE)
         val gson = Gson()
         val json = gson.toJson(dataToSave)
@@ -57,7 +60,7 @@ class TaskDao {
         editor.commit()
     }
 
-    fun readFromSharedPreferences(){
+    fun readFromSharedPreferences() {
         val context = MainApplication.applicationContext()
         val readedData: ArrayList<Task> = loadListFromSharedPreferneces(
                 context, SHARED_PREFERENCES_TAG
@@ -81,6 +84,14 @@ class TaskDao {
         val dataListFromSharedPreferneces: ArrayList<Task> =
                 gson.fromJson<ArrayList<Task>>(json, itemType)
         return dataListFromSharedPreferneces
+    }
+
+    fun clearSharedPreferences(context: Context,
+                               sharedPreferencesTag: String) {
+        var sharedPreferences = context.getSharedPreferences(sharedPreferencesTag, Context.MODE_PRIVATE)
+        val preferencesEditor: Editor = sharedPreferences.edit()
+        preferencesEditor.clear();
+        preferencesEditor.apply();
     }
 
     //endregion

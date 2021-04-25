@@ -39,7 +39,7 @@ object DataSource {
                     taskArray[index][0],
                     getRandDate(),
                     taskArray[index][1],
-                    taskArray[index][0] + "\t\t" + getRandDate(),
+                    taskArray[index][0] + "\n" + getRandDate(),
                     time()
 
                     )
