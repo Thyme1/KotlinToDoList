@@ -4,8 +4,8 @@
     <item
         android:id="@+id/taskListFragment"
         android:title="@string/todo"/>
-    <item
-        android:id="@+id/addTaskFragment"
-        android:title="@string/add_task"/>
+<!--    <item-->
+<!--        android:id="@+id/addTaskFragment"-->
+<!--        android:title="@string/add_task"/>-->
 
 </menu>

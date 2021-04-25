@@ -8,6 +8,9 @@
         <variable
             name="task"
             type="com.thyme.todolist.data.Task" />
+        <variable
+            name="taskViewModel"
+            type="com.thyme.todolist.ui.toDo.list.TaskViewModel" />
 
         <variable
             name="clickListener"

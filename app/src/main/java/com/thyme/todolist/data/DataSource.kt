@@ -1,6 +1,5 @@
 package com.thyme.todolist.data
 
-import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.util.*
@@ -30,7 +29,7 @@ object DataSource {
     private fun MockTasks() {
         _tasks = ArrayList()
 
-        repeat((6..10).random())
+        repeat((3..5).random())
         {
             val index = kotlin.random.Random.nextInt(taskArray.size)
 
