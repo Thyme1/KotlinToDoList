@@ -86,8 +86,9 @@ class TaskListFragment : Fragment(), TaskItemClickListener {
 
     fun clearPreferences() {
         val context = MainApplication.applicationContext()
-        Database.taskDao.clearSharedPreferences(context, "taskData")
+        Database.taskDao.clearSharedPreferences(context)
         Toast.makeText(requireActivity(), "SharedPreferences cleared", Toast.LENGTH_LONG).show()
+        mAdapter.notifyDataSetChanged()
 
     }
     }

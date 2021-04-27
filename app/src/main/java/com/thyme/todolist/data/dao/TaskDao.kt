@@ -2,7 +2,6 @@ package com.thyme.todolist.data.dao
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.thyme.todolist.MainApplication
@@ -14,9 +13,10 @@ class TaskDao {
         public const val SHARED_PREFERENCES_TAG = "taskData"
     }
 
-    //    init{
-//        readFromSharedPreferences()
-//    }
+    init {
+        readFromSharedPreferences()
+    }
+
     fun getAllTasks(): ArrayList<Task> {
         return DataSource.tasks
     }
@@ -45,6 +45,7 @@ class TaskDao {
         val context = MainApplication.applicationContext()
         var dataToSave: ArrayList<Task> = arrayListOf()
         dataToSave = DataSource.tasks
+        saveListInSharedPreferences(context, SHARED_PREFERENCES_TAG, dataToSave)
 
     }
 
@@ -66,7 +67,7 @@ class TaskDao {
                 context, SHARED_PREFERENCES_TAG
         )
 
-        DataSource.tasks.clear()
+
         DataSource.tasks = readedData
     }
 
@@ -86,12 +87,10 @@ class TaskDao {
         return dataListFromSharedPreferneces
     }
 
-    fun clearSharedPreferences(context: Context,
-                               sharedPreferencesTag: String) {
-        var sharedPreferences = context.getSharedPreferences(sharedPreferencesTag, Context.MODE_PRIVATE)
-        val preferencesEditor: Editor = sharedPreferences.edit()
-        preferencesEditor.clear();
-        preferencesEditor.apply();
+    fun clearSharedPreferences(context: Context) {
+        var listOfTasks = getAllTasks()
+        listOfTasks.clear()
+        saveInSharedPreferences()
     }
 
     //endregion
