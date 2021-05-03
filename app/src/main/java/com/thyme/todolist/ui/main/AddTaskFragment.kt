@@ -10,9 +10,11 @@ import androidx.fragment.app.activityViewModels
 import com.thyme.todolist.data.Database
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.AddTaskFragmentBinding
-import com.thyme.todolist.ui.toDo.list.TaskListViewModel
+import com.thyme.todolist.viewmodels.TaskListViewModel
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
-import kotlinx.android.synthetic.main.add_task_fragment.*
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class AddTaskFragment : Fragment() {
     private val sharedViewModel: TaskListViewModel by activityViewModels()

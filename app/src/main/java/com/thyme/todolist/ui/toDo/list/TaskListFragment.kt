@@ -18,6 +18,7 @@ import com.thyme.todolist.databinding.FragmentTaskListBinding
 import com.thyme.todolist.ui.main.MainViewModel
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
 import com.thyme.todolist.ui.toDo.list.adapters.TaskItemClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
@@ -25,6 +26,7 @@ import com.thyme.todolist.ui.toDo.list.adapters.TaskItemClickListener
  * Use the [SubjectListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class TaskListFragment : Fragment(), TaskItemClickListener {
 
     companion object {

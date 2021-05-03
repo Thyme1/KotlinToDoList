@@ -1,4 +1,4 @@
-package com.thyme.todolist.ui.toDo.list
+package com.thyme.todolist.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

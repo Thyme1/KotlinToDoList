@@ -10,7 +10,7 @@
             type="com.thyme.todolist.data.Task" />
         <variable
             name="taskViewModel"
-            type="com.thyme.todolist.ui.toDo.list.TaskViewModel" />
+            type="com.thyme.todolist.viewmodels.TaskViewModel" />
 
         <variable
             name="clickListener"
