@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.thyme.todolist.MainApplication
 import com.thyme.todolist.R
+import com.thyme.todolist.data.Database
 import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.FragmentTaskListBinding
+import com.thyme.todolist.ui.main.MainViewModel
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
 import com.thyme.todolist.ui.toDo.list.adapters.TaskItemClickListener
 
@@ -29,7 +32,8 @@ class TaskListFragment : Fragment(), TaskItemClickListener {
     }
 
     lateinit var mAdapter: TaskAdapter
-    val sharedViewModel: TaskListViewModel by activityViewModels()
+    val sharedViewModel: MainViewModel by activityViewModels()
+    private var binding: FragmentTaskListBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,17 +44,27 @@ class TaskListFragment : Fragment(), TaskItemClickListener {
             savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentTaskListBinding>(
-                inflater, R.layout.fragment_task_list, container, false
+        val fragmentBinding = FragmentTaskListBinding.inflate(
+                inflater, container, false
         )
+        binding = fragmentBinding
 
         mAdapter = TaskAdapter(this)
         mAdapter.submitList(Repository.getAllTasks().value)
-        binding.recyclerView.adapter = mAdapter
+        fragmentBinding.recyclerView.adapter = mAdapter
 
-        subscribeUi(mAdapter, binding)
+        subscribeUi(mAdapter, binding!!)
 
-        return binding.root
+        return fragmentBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = sharedViewModel
+            taskListFragment = this@TaskListFragment
+        }
     }
 
     private fun subscribeUi(newAdapter: TaskAdapter, binding: FragmentTaskListBinding) {
@@ -66,6 +80,16 @@ class TaskListFragment : Fragment(), TaskItemClickListener {
         Toast.makeText(requireActivity(), "You have choosen task: ${task.name}", Toast.LENGTH_LONG).show()
         }
 
+    fun addTask() {
+        findNavController().navigate(R.id.action_taskListFragment_to_addTaskFragment)
+    }
 
+    fun clearPreferences() {
+        val context = MainApplication.applicationContext()
+        Database.taskDao.clearSharedPreferences(context)
+        Toast.makeText(requireActivity(), "SharedPreferences cleared", Toast.LENGTH_LONG).show()
+        mAdapter.notifyDataSetChanged()
+
+    }
     }
 

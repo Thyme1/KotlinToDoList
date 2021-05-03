@@ -1,6 +1,5 @@
 package com.thyme.todolist.data
 
-import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.util.*
@@ -9,14 +8,16 @@ import kotlin.math.roundToInt
 
 
 object DataSource {
-    private var _tasks: ArrayList<Task>? = null
-    val tasks: ArrayList<Task>
+    var _tasks: ArrayList<Task>? = null
+
+    var tasks: ArrayList<Task> = ArrayList<Task>()
         get() {
             if (_tasks == null) {
                 MockTasks()
             }
             return _tasks!!
         }
+
 
     private val taskArray =
             arrayOf(arrayOf("Do homework", "Make a list of tasks for LSM"),
@@ -33,7 +34,7 @@ object DataSource {
     private fun MockTasks() {
         _tasks = ArrayList()
 
-        repeat((3..7).random())
+        repeat((3..5).random())
         {
             val index = kotlin.random.Random.nextInt(taskArray.size)
 
@@ -41,7 +42,7 @@ object DataSource {
                     taskArray[index][0],
                     getRandDate(),
                     taskArray[index][1],
-                    taskArray[index][0] + "\t\t" + getRandDate(),
+                    taskArray[index][0] + "\n" + getRandDate(),
                     time()
 
                     )

@@ -9,7 +9,7 @@ class MainApplication : Application() {
     }
 
     companion object {
-        private var instance: MainApplication? = null
+        private var instance: MainApplication? =  null
 
         fun applicationContext(): Context {
             return instance!!.applicationContext

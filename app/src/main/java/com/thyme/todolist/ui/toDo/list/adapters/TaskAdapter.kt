@@ -23,6 +23,7 @@ class TaskAdapter internal constructor(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = getItem(position)
+
         holder.bind(task, mListener)
     }
 
