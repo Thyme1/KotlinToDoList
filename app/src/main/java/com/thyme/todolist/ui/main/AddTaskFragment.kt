@@ -1,6 +1,5 @@
 package com.thyme.todolist.ui.main
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,13 +34,7 @@ class AddTaskFragment : Fragment() {
         return fragmentBinding.root
     }
 
-    private fun addToSharedPref() {
-        val sharedPreference =  getSharedPreferences("AddTaskData", Context.MODE_PRIVATE)
-        var editor = sharedPreference.edit()
-        editor.putString("username","Anupam")
-        editor.putLong("l",100L)
-        editor.commit()
-    }
+   
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
