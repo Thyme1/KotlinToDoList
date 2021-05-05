@@ -6,14 +6,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.thyme.todolist.R
+import com.lsm.learnwordspart2.R
+import com.lsm.learnwordspart2.databinding.ItemTaskBinding
 import com.thyme.todolist.data.Task
-import com.thyme.todolist.databinding.ItemTaskBinding
 import com.thyme.todolist.viewmodels.TaskListViewModel
 
-
 class TaskAdapter internal constructor(
-        private val mTaskViewModel : TaskListViewModel
+    private val mSubjectViewModel : TaskListViewModel
 ): ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -21,12 +20,12 @@ class TaskAdapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val subject = getItem(position)
-        holder.bind(subject, mTaskViewModel)
+        val task = getItem(position)
+        holder.bind(task, mSubjectViewModel)
     }
 
     class TaskViewHolder(val binding: ItemTaskBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(currentTask: Task, taskViewModel: TaskListViewModel) {
             binding.task = currentTask
@@ -38,8 +37,8 @@ class TaskAdapter internal constructor(
             fun from(parent: ViewGroup): TaskViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding: ItemTaskBinding = DataBindingUtil.inflate(
-                        layoutInflater, R.layout.item_task,
-                        parent, false
+                    layoutInflater, R.layout.item_task,
+                    parent, false
                 )
                 return TaskViewHolder(binding)
 
@@ -48,13 +47,14 @@ class TaskAdapter internal constructor(
     }
 }
 
-
 private class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.name == newItem.name
+
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem == newItem
     }
 }
+

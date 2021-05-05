@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import com.thyme.todolist.R
-import com.thyme.todolist.databinding.FragmentTaskListBinding
+import com.lsm.learnwordspart2.R
+import com.lsm.learnwordspart2.databinding.FragmentTaskListBinding
 import com.thyme.todolist.ui.base.BaseFragment
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
 import com.thyme.todolist.viewmodels.TaskListViewModel
@@ -18,13 +18,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class TaskListFragment : BaseFragment() {
 
     private var mBinding: FragmentTaskListBinding? = null
-    lateinit var adapter: TaskAdapter
-    val taskViewModel: TaskListViewModel by viewModels()
+    private lateinit var adapter: TaskAdapter
+    private val taskViewModel: TaskListViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val binding = DataBindingUtil.inflate<FragmentTaskListBinding>(
                 inflater, R.layout.fragment_task_list, container, false

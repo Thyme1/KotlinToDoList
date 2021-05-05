@@ -14,9 +14,7 @@
             name="addTaskModel"
             type="com.thyme.todolist.viewmodels.AddTaskViewModel" />
 
-        <variable
-            name="viewModel"
-            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -90,7 +88,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/editTextTextTaskName"
+            android:id="@+id/editTextTaskName"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="wrap_content"
             android:layout_height="53dp"
@@ -146,7 +144,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.92"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextTaskName"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
@@ -154,7 +151,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add"
-            android:onClick="@{() -> addTaskFragment.addNew()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -162,6 +158,20 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTime"
             app:layout_constraintVertical_bias="0.053" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_save_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime"
+            app:layout_constraintVertical_bias="0.053"
+            android:src="@drawable/ic_check_mark"
+            android:contentDescription="@string/checkmark" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

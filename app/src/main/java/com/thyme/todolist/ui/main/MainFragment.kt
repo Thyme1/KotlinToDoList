@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.thyme.todolist.R
+import com.lsm.learnwordspart2.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -12,7 +12,7 @@ class Repository @Inject constructor(
         val taskDao: TaskDao
 
 ) {
-    fun getAllTasks() = taskDao.getAllSubjects()
+    fun getAllTasks() = taskDao.getAllTasks()
 
 
 }

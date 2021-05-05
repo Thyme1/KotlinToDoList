@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.lsm.learnwordspart2.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,8 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         var navController = findNavController(R.id.nav_host_fragment)
-    //        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-    //        navView.setupWithNavController(navController)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
