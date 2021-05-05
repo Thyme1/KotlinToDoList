@@ -9,38 +9,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thyme.todolist.R
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.ItemTaskBinding
-
+import com.thyme.todolist.viewmodels.TaskListViewModel
 
 
 class TaskAdapter internal constructor(
-        private val mListener: TaskItemClickListener
-) : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
+        private val mTaskViewModel : TaskListViewModel
+): ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.TaskViewHolder {
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task = getItem(position)
-
-        holder.bind(task, mListener)
+        val subject = getItem(position)
+        holder.bind(subject, mTaskViewModel)
     }
-
-    override fun getItemCount(): Int {
-        val result = super.getItemCount()
-        return result
-    }
-
 
     class TaskViewHolder(val binding: ItemTaskBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentTask: Task, listener: TaskItemClickListener) {
+        fun bind(currentTask: Task, taskViewModel: TaskListViewModel) {
             binding.task = currentTask
-            binding.clickListener = listener
+            binding.taskViewModel = taskViewModel
             binding.executePendingBindings()
-
         }
 
         companion object {
@@ -51,13 +42,13 @@ class TaskAdapter internal constructor(
                         parent, false
                 )
                 return TaskViewHolder(binding)
+
             }
         }
     }
 }
-interface TaskItemClickListener {
-    fun chooseTask(task: Task)
-}
+
+
 private class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.name == newItem.name

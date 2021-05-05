@@ -6,10 +6,8 @@
     <data>
         <variable
             name="viewModel"
-            type="com.thyme.todolist.ui.main.MainViewModel" />
-        <variable
-            name="taskListFragment"
-            type="com.thyme.todolist.ui.toDo.list.TaskListFragment" />
+            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +34,7 @@
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> taskListFragment.addTask()}"
+            android:onClick="@{() -> viewModel.goToAddTask()}"
             android:text="@string/add_task_fragm"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,18 +42,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recycler_view"
             app:layout_constraintVertical_bias="0.052" />
 
-        <Button
-            android:id="@+id/clearPref"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> taskListFragment.clearPreferences()}"
-            android:text="@string/clear_preferences"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAdd"
-            app:layout_constraintVertical_bias="0.0" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

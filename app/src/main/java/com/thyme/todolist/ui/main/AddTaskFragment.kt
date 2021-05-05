@@ -5,59 +5,67 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.thyme.todolist.data.Database
+import androidx.fragment.app.viewModels
+import androidx.room.Database
+import com.thyme.todolist.R
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.AddTaskFragmentBinding
+import com.thyme.todolist.ui.base.BaseFragment
 import com.thyme.todolist.viewmodels.TaskListViewModel
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
+import com.thyme.todolist.utils.ImageUtils
+import com.thyme.todolist.viewmodels.AddTaskViewModel
+import com.thyme.todolist.viewmodels.AddTaskViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
+class AddTaskFragment : BaseFragment() {
 
-class AddTaskFragment : Fragment() {
-    private val sharedViewModel: TaskListViewModel by activityViewModels()
-    private var binding: AddTaskFragmentBinding? = null
-    lateinit var mAdapter: TaskAdapter
+    private val args: AddTaskArgs by navArgs()
+    private var mBinding: AddTaskFragmentBinding? = null
+
+    @Inject
+    lateinit var addTaskViewModelFactory: AddTaskViewModelFactory
+
+    private val addTaskViewModel: AddTaskViewModel by viewModels {
+        AddTaskViewModel.provideFactory(addTaskViewModelFactory, args.chapterUid)
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val fragmentBinding = AddTaskFragmentBinding.inflate(
-                inflater, container, false
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+        val fragmentBinding = DataBindingUtil.inflate<AddTaskFragmentBinding>(
+                inflater, R.layout.add_task_fragment, container, false
         )
 
-        binding = fragmentBinding
-        binding!!.addTaskFragment?.AddTaskButton?.setOnClickListener { addNew() }
-
+        mBinding = fragmentBinding
 
         return fragmentBinding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.apply {
+
+        mBinding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = sharedViewModel
+            addTaskModel = addTaskViewModel
             addTaskFragment = this@AddTaskFragment
         }
+
+        observeModelNavigation(addTaskViewModel)
     }
+
+}
+
 
     fun addNew() {
 
-        var name = binding?.addTaskFragment!!.editTextTextTaskName.text.toString()
-        var date = binding?.addTaskFragment!!.editTextDate.text.toString()
-        var description = binding?.addTaskFragment!!.editTextTextDescription.text.toString()
-        var nameAndDate = name + "\n" + date
-        var hour = binding?.addTaskFragment!!.editTextTime.text.toString()
-
-        var task = Task(name,date,description,nameAndDate,hour)
-        Database.taskDao.addTask(task)
-        Toast.makeText(requireActivity(), "Task added", Toast.LENGTH_SHORT).show()
+       
 
     }
 

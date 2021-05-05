@@ -1,35 +1,41 @@
 package com.thyme.todolist.viewmodels
 
-import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.thyme.todolist.MainApplication
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import com.thyme.todolist.R
-import com.thyme.todolist.data.Database
 import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.ui.base.NavigEvent
 import com.thyme.todolist.ui.base.NavigateEventInfo
-import com.thyme.todolist.ui.toDo.list.TaskListFragment
+import dagger.assisted.AssistedFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import javax.security.auth.Subject
 
 /**
  * Zawiera informacje aktualnie wybiernego zadania.
  */
 @HiltViewModel
 class TaskListViewModel @Inject public constructor(
-    subjectRepository: Repository
+    taskRepository: Repository
 ) : BaseViewModel() {
-    val tasks = subjectRepository.getAllTasks().asLiveData()
+    val tasks = taskRepository.getAllTasks().asLiveData()
+
+    companion object {
+        fun provideFactory(
+                assistedFactory: TaskListViewModelFactory
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return assistedFactory.create() as T
+            }
+        }
+    }
 
     fun chooseTask(task: Task) {
         Log.d("Do chore", "Task name clicked: ${task.name}")
-        var bundle = Bundle()
-        bundle.putString(TaskListFragment.TAG,task.name)
-        Toast.makeText(requireActivity(), "You have choosen task: ${task.name}", Toast.LENGTH_LONG).show()
+//        Toast.makeText(requireActivity(), "You have choosen task: ${task.name}", Toast.LENGTH_LONG).show()
     }
 
     fun goToAddTask() {
@@ -38,14 +44,14 @@ class TaskListViewModel @Inject public constructor(
         )
         _navigateToFragment.value = NavigEvent(navigInfo)
     }
-    }
 
-    fun clearPreferences() {
-        val context = MainApplication.applicationContext()
-        Database.taskDao.clearSharedPreferences(context)
-        Toast.makeText(requireActivity(), "SharedPreferences cleared", Toast.LENGTH_LONG).show()
-        mAdapter.notifyDataSetChanged()
 
-    }
+
+
+}
+
+@AssistedFactory
+interface TaskListViewModelFactory {
+    fun create(): TaskListViewModel
 
 }

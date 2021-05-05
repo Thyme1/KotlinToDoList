@@ -7,8 +7,12 @@
     <data>
 
         <variable
-            name="AddTaskFragment"
+            name="addTaskFragment"
             type="com.thyme.todolist.ui.main.AddTaskFragment" />
+
+        <variable
+            name="addTaskModel"
+            type="com.thyme.todolist.viewmodels.AddTaskViewModel" />
 
         <variable
             name="viewModel"
@@ -150,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add"
-            android:onClick="@{() -> AddTaskFragment.addNew()}"
+            android:onClick="@{() -> addTaskFragment.addNew()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

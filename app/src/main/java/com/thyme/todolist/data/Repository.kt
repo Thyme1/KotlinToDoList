@@ -1,18 +1,18 @@
 package com.thyme.todolist.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.thyme.todolist.data.dao.TaskDao
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object Repository {
-    var tasks: MutableLiveData<ArrayList<Task>> = MutableLiveData()
+/**
+ * Zapewnia dostep do danych
+ */
+@Singleton
+class Repository @Inject constructor(
+        val taskDao: TaskDao
 
-    init {
-        tasks.value = Database.taskDao.getAllTasks()
+) {
+    fun getAllTasks() = taskDao.getAllSubjects()
 
-    }
 
-    fun getAllTasks(): LiveData<ArrayList<Task>> {
-        return tasks
-
-    }
 }

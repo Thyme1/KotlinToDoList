@@ -10,11 +10,8 @@
             type="com.thyme.todolist.data.Task" />
         <variable
             name="taskViewModel"
-            type="com.thyme.todolist.viewmodels.TaskViewModel" />
+            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
 
-        <variable
-            name="clickListener"
-            type="com.thyme.todolist.ui.toDo.list.adapters.TaskItemClickListener" />
 
     </data>
 
@@ -24,8 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_launcher_background"
-        android:text="@{task.nameAndDate}"
-        android:onClick="@{() -> clickListener.chooseTask(task)}"
+        android:text="@{task.name}"
+        android:onClick="@{() -> taskViewModel.chooseTask(task)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
