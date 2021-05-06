@@ -1,46 +1,50 @@
 package com.thyme.todolist.ui.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import com.lsm.learnwordspart2.R
-import com.lsm.learnwordspart2.databinding.AddTaskFragmentBinding
+import com.thyme.todolist.R
+import com.thyme.todolist.databinding.AddTaskFragmentBinding
+import com.thyme.todolist.ui.base.BaseFragment
+import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
 import com.thyme.todolist.viewmodels.AddTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
+class AddTaskFragment : BaseFragment() {
+    private var mBinding: AddTaskFragmentBinding? = null
+    lateinit var adapter: TaskAdapter
 
     private val viewModel: AddTaskViewModel by viewModels()
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = DataBindingUtil.inflate<AddTaskFragmentBinding>(
+            inflater, R.layout.add_task_fragment, container, false
+        )
+
+        this.mBinding = binding
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = AddTaskFragmentBinding.bind(view)
-
-        binding.apply {
-            editTextTaskName.setText(viewModel.taskName)
-            editTextDate.setText(viewModel.taskDate)
-            editTextTextDescription.setText(viewModel.taskDescription)
-            editTextTime.setText(viewModel.taskTime)
-
-
-            editTextTaskName.addTextChangedListener {
-                viewModel.taskName = it.toString()
-            }
-
-
-
-            fabSaveTask.setOnClickListener {
-                viewModel.onSaveClick()
-            }
+        mBinding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            addTaskFragment = this@AddTaskFragment
         }
 
-
     }
+
 }
 
 

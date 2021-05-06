@@ -6,13 +6,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.lsm.learnwordspart2.R
-import com.lsm.learnwordspart2.databinding.ItemTaskBinding
+import com.thyme.todolist.R
 import com.thyme.todolist.data.Task
+import com.thyme.todolist.databinding.ItemTaskBinding
 import com.thyme.todolist.viewmodels.TaskListViewModel
 
 class TaskAdapter internal constructor(
-    private val mSubjectViewModel : TaskListViewModel
+    private val mTaskViewModel : TaskListViewModel
 ): ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -21,7 +21,7 @@ class TaskAdapter internal constructor(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = getItem(position)
-        holder.bind(task, mSubjectViewModel)
+        holder.bind(task, mTaskViewModel)
     }
 
     class TaskViewHolder(val binding: ItemTaskBinding) :
@@ -47,14 +47,13 @@ class TaskAdapter internal constructor(
     }
 }
 
+
 private class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.name == newItem.name
-
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem == newItem
     }
 }
-

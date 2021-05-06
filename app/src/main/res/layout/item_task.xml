@@ -19,7 +19,6 @@
         android:id="@+id/button_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_launcher_background"
         android:text="@{task.name}"
         android:onClick="@{() -> taskViewModel.chooseTask(task)}"
         app:layout_constraintBottom_toBottomOf="parent"

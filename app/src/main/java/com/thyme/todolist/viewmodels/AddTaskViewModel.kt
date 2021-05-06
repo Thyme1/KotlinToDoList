@@ -3,8 +3,8 @@ package com.thyme.todolist.viewmodels
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
-import com.thyme.todolist.data.dao.TaskDao
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.Channel
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class AddTaskViewModel @AssistedInject constructor(
-    private val taskDao: TaskDao,
+    private val repository: Repository,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
 
@@ -56,7 +56,7 @@ class AddTaskViewModel @AssistedInject constructor(
     }
 
     private fun createTask(task: Task) = viewModelScope.launch {
-        taskDao.insert(task)
+        repository.taskDao.insert(task)
     }
 
 

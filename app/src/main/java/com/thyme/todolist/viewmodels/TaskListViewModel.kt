@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import com.lsm.learnwordspart2.R
+import com.thyme.todolist.R
 import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.ui.base.NavigEvent
