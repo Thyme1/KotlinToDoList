@@ -4,53 +4,44 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import com.thyme.todolist.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.thyme.todolist.databinding.AddTaskFragmentBinding
-import com.thyme.todolist.ui.base.BaseFragment
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
-import com.thyme.todolist.viewmodels.AddTaskViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import com.thyme.todolist.viewmodels.TaskListViewModel
+import kotlinx.android.synthetic.main.add_task_fragment.*
 
-
-@AndroidEntryPoint
-class AddTaskFragment : BaseFragment() {
-    private var mBinding: AddTaskFragmentBinding? = null
-    lateinit var adapter: TaskAdapter
-
-    private val viewModel: AddTaskViewModel by viewModels()
-
+class AddTaskFragment : Fragment() {
+    private val sharedViewModel: TaskListViewModel by activityViewModels()
+    private var binding: AddTaskFragmentBinding? = null
+    lateinit var mAdapter: TaskAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = DataBindingUtil.inflate<AddTaskFragmentBinding>(
-            inflater, R.layout.add_task_fragment, container, false
+    ): View {
+        val fragmentBinding = AddTaskFragmentBinding.inflate(
+            inflater, container, false
         )
 
-        this.mBinding = binding
+        binding = fragmentBinding
+        binding!!.addTaskFragment?.AddTaskButton?.setOnClickListener { }
 
-        return binding.root
+
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        mBinding?.apply {
+        binding?.apply {
             lifecycleOwner = viewLifecycleOwner
+            viewModel = sharedViewModel
             addTaskFragment = this@AddTaskFragment
         }
-
     }
 
+
+
+
+
 }
-
-
-
-
-
-
-
-

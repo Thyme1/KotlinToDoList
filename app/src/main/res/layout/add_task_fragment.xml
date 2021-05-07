@@ -5,163 +5,79 @@
 
 
     <data>
-        <import type="android.view.View" />
 
         <variable
             name="AddTaskFragment"
             type="com.thyme.todolist.ui.main.AddTaskFragment" />
 
         <variable
-            name="viewModel"
+            name="AddTaskViewModel"
             type="com.thyme.todolist.viewmodels.AddTaskViewModel" />
 
-
+        <variable
+            name="viewModel"
+            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       >
+        tools:context=".ui.main.AddTaskFragment">
 
-        <EditText
-            android:id="@+id/editTextTime"
-            style="@android:style/Widget.EditText"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/_00_00"
-            android:inputType="time"
-            android:textSize="24sp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate"
-            app:layout_constraintVertical_bias="0.0"
-            tools:visibility="visible" />
-
-        <EditText
-            android:id="@+id/editTextDate"
-            style="@android:style/Widget.EditText"
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/_16_05_2021"
-            android:inputType="date"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextDescription"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:gravity="center"
-            android:text="@string/date"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.202"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDescription"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textViewTime"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:gravity="center"
-            android:text="@string/time"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.193"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDate"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/editTextTextTaskName"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.063" />
-
-        <TextView
-            android:id="@+id/textViewName"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:gravity="center"
-            android:text="@string/name"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.169"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.063" />
-
-        <TextView
-            android:id="@+id/textViewDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:gravity="center"
-            android:text="@string/description"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewName"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/editTextTextDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="53dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextTaskName"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/AddTaskButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:onClick="@{() -> viewModel.onSaveClick()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime"
-            app:layout_constraintVertical_bias="0.053" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".AddTaskFragment">
 
 
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="enter task name"
+                android:inputType="text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="enter description"
+                android:inputType="text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="enter date"
+                android:inputType="text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="enter time"
+                android:inputType="text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

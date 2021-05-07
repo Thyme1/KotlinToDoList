@@ -1,70 +1,21 @@
 package com.thyme.todolist.viewmodels
 
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.asLiveData
 import com.thyme.todolist.data.Repository
 import com.thyme.todolist.data.Task
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AddTaskViewModel @AssistedInject constructor(
-    private val repository: Repository,
-    @Assisted private val state: SavedStateHandle
-) : ViewModel() {
+/**
+ * Zawiera informacje aktualnie wybiernego przedmiotu do nauki.
+ */
 
-    val task = state.get<Task>("task")
+@HiltViewModel
+class AddTaskViewModel @Inject public constructor(
+    subjectRepository: Repository
+) : BaseViewModel() {
+    val tasks = subjectRepository.getAllTasks().asLiveData()
 
-    var taskName = state.get<String>("taskName") ?: task?.name ?: ""
-        set(value) {
-            field = value
-            state.set("taskName", value)
-        }
-    var taskDescription = state.get<String>("taskDescription") ?: task?.description ?: ""
-        set(value) {
-            field = value
-            state.set("taskDescription", value)
-        }
-    var taskTime = state.get<String>("taskTime") ?: task?.hour ?: ""
-        set(value) {
-            field = value
-            state.set("taskTime", value)
-        }
-    var taskDate = state.get<String>("taskDate") ?: task?.hour ?: ""
-        set(value) {
-            field = value
-            state.set("taskDate", value)
-        }
+    fun chooseTask(task: Task) {}
 
-
-    private val addAddTaskEventChannel = Channel<AddEditTaskEvent>()
-    val addEditTaskEvent = addAddTaskEventChannel.receiveAsFlow()
-
-    fun onSaveClick() {
-        if (taskName.isBlank()) {
-            showInvalidInputMessage("Name cannot be empty")
-            return
-        }
-
-        val newTask =
-            Task(name = taskName, date = taskDate, description = taskDescription, hour = taskTime)
-        createTask(newTask)
-
-    }
-
-    private fun createTask(task: Task) = viewModelScope.launch {
-        repository.taskDao.insert(task)
-    }
-
-
-    private fun showInvalidInputMessage(text: String) = viewModelScope.launch {
-        addAddTaskEventChannel.send(AddEditTaskEvent.ShowInvalidInputMessage(text))
-    }
-
-    sealed class AddEditTaskEvent {
-        data class ShowInvalidInputMessage(val msg: String) : AddEditTaskEvent()
-    }
 }
