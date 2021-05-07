@@ -15,10 +15,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-//dao.insert(Task("Feed dog", "12-05-2021", "Give dog something to eat", "12:35"))
-//                dao.insert(Task("Tidy my room", "17-07-2021", "Clean room", "16:20"))
-//                dao.insert(Task("Mow the lawn", "11-09-2021", "Mow our lawn", "15:00"))
-
 
 @Database(entities = [Task::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
@@ -59,9 +55,9 @@ abstract class AppDatabase : RoomDatabase() {
                     val taskDao: TaskDao = db.taskDao()
 
                     // Hardcoded text only for tests
-                    val task1 = Task(name = "Feed dog", date = "12-05-2021", description = "Give dog something to eat", hour = "12:35")
+                    val task1 = Task(name = "Feed dog", date = "12-05-2021", description = "Give dog something to eat", time = "12:35")
                     taskDao.insert(task1)
-                    val task2 = Task(name = "Tidy my room", date = "17-07-2021", description = "Clean room", hour = "16:20")
+                    val task2 = Task(name = "Tidy my room", date = "17-07-2021", description = "Clean room", time = "16:20")
                     taskDao.insert(task2)
 
 

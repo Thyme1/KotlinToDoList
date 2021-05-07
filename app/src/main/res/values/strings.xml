@@ -10,4 +10,10 @@
     <string name="add">ADD</string>
     <string name="add_task_fragm">ADD TASK</string>
     <string name="checkmark">Checkmark</string>
+    <string name="enter_time">enter time</string>
+    <string name="save">Save</string>
+    <string name="enter_date">enter date</string>
+    <string name="enter_task_name">enter task name</string>
+    <string name="enter_description">enter description</string>
+    <string name="clear">Clear</string>
 </resources>

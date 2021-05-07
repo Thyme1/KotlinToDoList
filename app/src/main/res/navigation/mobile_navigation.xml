@@ -8,7 +8,7 @@
         android:id="@+id/taskListFragment"
         android:name="com.thyme.todolist.ui.toDo.list.TaskListFragment"
         android:label="fragment_task_list"
-        tools:layout="@layout/fragment_task_list" >
+        tools:layout="@layout/fragment_task_list">
         <action
             android:id="@+id/action_taskListFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
@@ -16,5 +16,18 @@
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.thyme.todolist.ui.main.AddTaskFragment"
-        android:label="AddTaskFragment" />
+        android:label="AddTaskFragment">
+    <argument
+        android:name="taskUid"
+        app:argType="long" />
+    <action
+        android:id="@+id/action_learningFragment_to_subjectListFragment"
+        app:destination="@id/taskListFragment"
+        app:enterAnim="@animator/slide_in_right"
+        app:exitAnim="@animator/slide_out_left"
+        app:popEnterAnim="@animator/slide_in_left"
+        app:popExitAnim="@animator/slide_out_right"
+        app:popUpTo="@id/taskListFragment"
+        app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -4,20 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <data>
+<!--    <data>-->
 
-        <variable
-            name="AddTaskFragment"
-            type="com.thyme.todolist.ui.main.AddTaskFragment" />
+<!--        <variable-->
+<!--            name="addTaskFragment"-->
+<!--            type="com.thyme.todolist.ui.main.AddTaskFragment" />-->
 
-        <variable
-            name="AddTaskViewModel"
-            type="com.thyme.todolist.viewmodels.AddTaskViewModel" />
+<!--        <variable-->
+<!--            name="addTaskViewModel"-->
+<!--            type="com.thyme.todolist.viewmodels.AddTaskViewModel" />-->
 
-        <variable
-            name="viewModel"
-            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
-    </data>
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.thyme.todolist.viewmodels.TaskListViewModel" />-->
+<!--        <variable-->
+<!--            name="task"-->
+<!--            type="com.thyme.todolist.data.Task" />-->
+<!--    </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -25,9 +28,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.AddTaskFragment">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -35,47 +36,50 @@
 
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/editTextTaskName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="enter task name"
+                android:hint="@string/enter_task_name"
                 android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <EditText
-                android:id="@+id/description"
+                android:id="@+id/editTextTaskDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="enter description"
+                android:hint="@string/enter_description"
                 android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <EditText
-                android:id="@+id/date"
+                android:id="@+id/editTextTaskDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="enter date"
+                android:hint="@string/enter_date"
                 android:inputType="text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:autofillHints="" />
 
             <EditText
-                android:id="@+id/time"
+                android:id="@+id/editTextTaskTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="enter time"
+                android:hint="@string/enter_time"
                 android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <Button
-                android:id="@+id/save"
+                android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="@string/save"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
 
 
         </LinearLayout>

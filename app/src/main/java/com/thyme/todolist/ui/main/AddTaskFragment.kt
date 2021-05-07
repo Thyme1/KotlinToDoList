@@ -1,47 +1,57 @@
 package com.thyme.todolist.ui.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import com.thyme.todolist.R
 import com.thyme.todolist.databinding.AddTaskFragmentBinding
-import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
-import com.thyme.todolist.viewmodels.TaskListViewModel
-import kotlinx.android.synthetic.main.add_task_fragment.*
+import com.thyme.todolist.viewmodels.AddTaskViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class AddTaskFragment : Fragment() {
-    private val sharedViewModel: TaskListViewModel by activityViewModels()
-    private var binding: AddTaskFragmentBinding? = null
-    lateinit var mAdapter: TaskAdapter
+@AndroidEntryPoint
+class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val fragmentBinding = AddTaskFragmentBinding.inflate(
-            inflater, container, false
-        )
-
-        binding = fragmentBinding
-        binding!!.addTaskFragment?.AddTaskButton?.setOnClickListener { }
+    private val viewModel: AddTaskViewModel by viewModels()
 
 
-        return fragmentBinding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = sharedViewModel
-            addTaskFragment = this@AddTaskFragment
+
+        val binding = AddTaskFragmentBinding.bind(view)
+
+        binding.apply {
+            editTextTaskName.setText(viewModel.taskName)
+            editTextTaskDescription.setText(viewModel.taskDescription)
+            editTextTaskDate.setText(viewModel.taskDate)
+            editTextTaskTime.setText(viewModel.taskTime)
+
+            editTextTaskName.addTextChangedListener {
+                viewModel.taskName = it.toString()
+            }
+
+            editTextTaskDescription.addTextChangedListener {
+                viewModel.taskDescription = it.toString()
+            }
+            editTextTaskDate.addTextChangedListener {
+                viewModel.taskDate = it.toString()
+            }
+            editTextTaskTime.addTextChangedListener {
+                viewModel.taskTime = it.toString()
+            }
+
+
+            saveButton.setOnClickListener {
+                viewModel.onSaveClick()
+            }
         }
+
     }
-
-
-
-
-
 }
+
+
+
+

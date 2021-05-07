@@ -9,7 +9,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class Repository @Inject constructor(
-        val taskDao: TaskDao
+    val taskDao: TaskDao
 
 ) {
     fun getAllTasks() = taskDao.getAllTasks()
