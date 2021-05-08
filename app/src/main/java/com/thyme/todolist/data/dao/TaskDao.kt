@@ -1,15 +1,29 @@
 package com.thyme.todolist.data.dao
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
 import com.thyme.todolist.data.Task
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-abstract class TaskDao : BaseDao<Task> {
+interface TaskDao {
 
-    @Query("SELECT * FROM task_table")
-    abstract fun getAllTasks(): Flow<List<Task>>
+    /**
+     * Insert an object in the database.
+     *
+     * @param obj the object to be inserted.
+     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTask(task: Task)
 
 
+    /**
+     * Delete an object from the database
+     *
+     * @param obj the object to be deleted
+     */
+    @Delete
+    fun deleteTask(task: Task)
+
+    @Query("SELECT * FROM task_table ORDER BY name ASC ")
+    fun getAllTasks(): Flow<List<Task>>
 }

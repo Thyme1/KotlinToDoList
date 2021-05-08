@@ -7,11 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "task_table")
 data class Task (
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0L,
-
-    var name: String,
-    var date: String,
-    var description: String,
-    var time: String
+    val id: Int,
+    var name: String
+//    var date: String,
+//    var description: String,
+//    var time: String
 
 )

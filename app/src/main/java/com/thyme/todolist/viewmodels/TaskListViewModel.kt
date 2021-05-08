@@ -1,7 +1,6 @@
 package com.thyme.todolist.viewmodels
 
 import androidx.lifecycle.*
-import com.thyme.todolist.data.dao.TaskDao
 import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

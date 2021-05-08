@@ -1,8 +1,9 @@
 package com.thyme.todolist.di
 
 import android.content.Context
+import androidx.room.Room
 import com.thyme.todolist.data.AppDatabase
-import com.thyme.todolist.data.dao.TaskDao
+import com.thyme.todolist.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,18 +11,23 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
 @Module
-class DatabaseModule {
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        return AppDatabase.getInstance(context)
-    }
+    fun provideTaskDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context, AppDatabase::class.java,
+        DATABASE_NAME
+    ).build()
 
+    @Singleton
     @Provides
-    fun provideTaskDao(appDatabase: AppDatabase): TaskDao {
-        return appDatabase.taskDao()
-    }
+    fun provideTaskDao(
+        db: AppDatabase
+    ) = db.taskDao()
+
 }

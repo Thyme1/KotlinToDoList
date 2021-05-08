@@ -1,8 +1,10 @@
 package com.thyme.todolist.ui.toDo.list.adapters
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,49 +13,62 @@ import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.ItemTaskBinding
 import com.thyme.todolist.viewmodels.TaskListViewModel
 
-class TaskAdapter internal constructor(
-    private val mSubjectViewModel : TaskListViewModel
-): ListAdapter<Task, TaskAdapter.TaskViewHolder>(SubjectDiffCallback()) {
+class TodoAdapter : RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        return TaskViewHolder.from(parent)
-    }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val subject = getItem(position)
-        holder.bind(subject, mSubjectViewModel)
-    }
+    inner class ToDoViewHolder(val binding: ItemTodoLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    class TaskViewHolder(val binding: ItemTaskBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    private val differCallback = object : DiffUtil.ItemCallback<Task>() {
 
-        fun bind(currentTask: Task, taskViewModel: TaskListViewModel) {
-            binding.task = currentTask
-            binding.taskViewModel = taskViewModel
-            binding.executePendingBindings()
+        override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        companion object {
-            fun from(parent: ViewGroup): TaskViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding: ItemTaskBinding = DataBindingUtil.inflate(
-                    layoutInflater, R.layout.item_task,
-                    parent, false
-                )
-                return TaskViewHolder(binding)
+        override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
+            return oldItem == newItem
+        }
+    }
 
+    private val differ = AsyncListDiffer(this, differCallback)
+    var mTodo: List<Task>
+        get() = differ.currentList
+        set(value) {
+            differ.submitList(value)
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
+        return ToDoViewHolder(
+            ItemTodoLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
+        val currentToDo = mTodo[position]
+
+        holder.binding.apply {
+            textView.text = currentToDo.toDoTitle
+        }
+
+        holder.binding.cbTodo.apply {
+            setOnClickListener {
+                holder.binding.apply {
+                    if (isChecked) {
+                        textView.paintFlags =
+                            textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    } else {
+                        textView.paintFlags =
+                            textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    }
+                }
             }
         }
     }
-}
+
+    override fun getItemCount() = mTodo.size
 
 
-private class SubjectDiffCallback : DiffUtil.ItemCallback<Task>() {
-    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem == newItem
-    }
 }
