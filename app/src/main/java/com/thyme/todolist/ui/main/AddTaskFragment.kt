@@ -7,11 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.thyme.todolist.R
 import com.thyme.todolist.databinding.AddTaskFragmentBinding
+import com.thyme.todolist.ui.base.BaseFragment
 import com.thyme.todolist.viewmodels.AddTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
+class AddTaskFragment : BaseFragment() {
 
     private val viewModel: AddTaskViewModel by viewModels()
 

@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="taskListViewModel"
+            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
+        <variable
+            name="taskListFragment"
+            type="com.thyme.todolist.ui.toDo.list.TaskListFragment" />
+        <variable
+            name="addTaskFragment"
+            type="com.thyme.todolist.ui.main.AddTaskFragment" />
+
+    </data>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +30,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="@string/task_name"
-            android:autofillHints="what" />
+            android:hint="@string/task_name"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/editTextTaskDate"
@@ -29,7 +39,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="@string/task_date"
+            android:hint="@string/task_date"
             android:importantForAutofill="no"
             tools:ignore="TextFields" />
 
@@ -39,16 +49,26 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:text="@string/task_time" />
+            android:hint="@string/task_time"
+            android:importantForAutofill="no" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/editTextTaskDescription"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/description"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="4" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="407dp"
-                android:hint="description" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="379dp"
+            android:layout_height="204dp"
+            android:layout_weight="1"
+            android:text="@string/add" />
+
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
