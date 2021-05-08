@@ -7,4 +7,9 @@
     <item name="editTextTextTaskName" type="id" />
     <item name="textViewName" type="id" />
     <item name="AddTaskButton" type="id" />
+    <item name="editTextTaskName" type="id" />
+    <item name="editTextTaskDescription" type="id" />
+    <item name="editTextTaskDate" type="id" />
+    <item name="editTextTaskTime" type="id" />
+    <item name="saveButton" type="id" />
 </resources>

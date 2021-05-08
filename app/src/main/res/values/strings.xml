@@ -1,19 +1,17 @@
 <resources>
     <string name="app_name">ToDoList</string>
     <string name="todo">Todo</string>
-    <string name="description">Description:</string>
-    <string name="name">Name:</string>
-    <string name="date">Date:</string>
-    <string name="time">Time:</string>
-    <string name="_16_05_2021">16–05-2021</string>
-    <string name="_00_00">00:00</string>
+
+
     <string name="add">ADD</string>
     <string name="add_task_fragm">ADD TASK</string>
     <string name="checkmark">Checkmark</string>
-    <string name="enter_time">enter time</string>
+
     <string name="save">Save</string>
-    <string name="enter_date">enter date</string>
-    <string name="enter_task_name">enter task name</string>
+
     <string name="enter_description">enter description</string>
     <string name="clear">Clear</string>
+    <string name="task_date">Task Date</string>
+    <string name="task_time">Task Time</string>
+    <string name="task_name">Task Name</string>
 </resources>
