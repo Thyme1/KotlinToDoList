@@ -12,8 +12,8 @@ import com.thyme.todolist.databinding.ItemTaskBinding
 import com.thyme.todolist.viewmodels.TaskListViewModel
 
 class TaskAdapter internal constructor(
-    private val mTaskViewModel : TaskListViewModel
-): ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
+    private val mSubjectViewModel : TaskListViewModel
+): ListAdapter<Task, TaskAdapter.TaskViewHolder>(SubjectDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder.from(parent)
@@ -21,15 +21,15 @@ class TaskAdapter internal constructor(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = getItem(position)
-        holder.bind(task, mTaskViewModel)
+        holder.bind(task, mSubjectViewModel)
     }
 
     class TaskViewHolder(val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentTask: Task, taskViewModel: TaskListViewModel) {
-            binding.task = currentTask
-            binding.taskViewModel = taskViewModel
+        fun bind(currentSubject: Task, subjectViewModel: TaskListViewModel) {
+            binding.task = currentSubject
+            binding.taskViewModel = subjectViewModel
             binding.executePendingBindings()
         }
 
@@ -48,9 +48,9 @@ class TaskAdapter internal constructor(
 }
 
 
-private class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
+private class SubjectDiffCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {

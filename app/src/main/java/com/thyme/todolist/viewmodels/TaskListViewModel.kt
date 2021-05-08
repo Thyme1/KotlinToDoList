@@ -1,16 +1,12 @@
 package com.thyme.todolist.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import com.thyme.todolist.R
-import com.thyme.todolist.data.Repository
-import com.thyme.todolist.data.Task
-import com.thyme.todolist.ui.base.NavigEvent
-import com.thyme.todolist.ui.base.NavigateEventInfo
-import dagger.assisted.AssistedFactory
+import androidx.lifecycle.*
+import com.thyme.todolist.data.dao.TaskDao
+import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -18,40 +14,39 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class TaskListViewModel @Inject constructor(
-    taskRepository: Repository
-) : BaseViewModel() {
-    val tasks = taskRepository.getAllTasks().asLiveData()
+    private val taskDao: TaskDao,
+    @Assisted private val state: SavedStateHandle
+) : ViewModel() {
 
-    companion object {
-        fun provideFactory(
-                assistedFactory: TaskListViewModelFactory
-        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return assistedFactory.create() as T
-            }
-        }
-    }
+    val searchQuery = state.getLiveData("searchQuery", "")
 
-    fun chooseTask(task: Task) {
-        Log.d("Do chore", "Task name clicked: ${task.name}")
-//        Toast.makeText(requireActivity(), "You have choosen task: ${task.name}", Toast.LENGTH_LONG).show()
-    }
 
-    fun goToAddTask() {
-        val navigInfo = NavigateEventInfo(
-            R.id.action_taskListFragment_to_addTaskFragment
-        )
-        _navigateToFragment.value = NavigEvent(navigInfo)
+    private val tasksEventChannel = Channel<TasksEvent>()
+    val tasksEvent = tasksEventChannel.receiveAsFlow()
+
+    private val tasksFlow = (
+        searchQuery.asFlow())
+
+
+    val tasks = tasksFlow.asLiveData()
+
+
+    fun onAddNewTaskClick() = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.NavigateToAddTaskScreen)
     }
 
 
 
 
-}
+    private fun showTaskSavedConfirmationMessage(text: String) = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.ShowTaskSavedConfirmationMessage(text))
+    }
 
-@AssistedFactory
-interface TaskListViewModelFactory {
-    fun create(): TaskListViewModel
 
+
+    sealed class TasksEvent {
+        object NavigateToAddTaskScreen : TasksEvent()
+
+        data class ShowTaskSavedConfirmationMessage(val msg: String) : TasksEvent()
+    }
 }
