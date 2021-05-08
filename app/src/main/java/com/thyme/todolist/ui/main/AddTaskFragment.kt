@@ -11,57 +11,63 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.thyme.todolist.R
+import com.thyme.todolist.data.Task
+import com.thyme.todolist.databinding.AddTaskFragmentBinding
+import com.thyme.todolist.viewmodels.AddTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
 
-    private var _binding: FragmentAddToDoBinding? = null
+    private var _binding: AddTaskFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: TodoViewModel by viewModels()
+    private val viewModel: AddTaskViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddToDoBinding.inflate(inflater, container, false)
+        _binding = AddTaskFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnAddTask.setOnClickListener { mView ->
+        binding.saveButton.setOnClickListener { mView ->
             saveNote(mView)
         }
 
-        binding.btnCancel.setOnClickListener {
-            binding.etTodoName.text.clear()
+        binding.cancelButton.setOnClickListener {
+            binding.editTextTaskName.text.clear()
             view.findNavController().navigate(
-                R.id.action_addToDoFragment_to_toDoListFragment
+                R.id.action_addTaskFragment_to_taskListFragment
             )
         }
     }
 
     private fun saveNote(view: View) {
-        val todoName = binding.etTodoName.text.toString()
+        val todoName = binding.editTextTaskName.text.toString()
 
         if (todoName.isNotEmpty()) {
-            val todo = ToDo(0, todoName)
+            val todo = Task(0, todoName)
 
-            viewModel.insertToDo(todo)
+            viewModel.insertTask(todo)
 
-            Snackbar.make(view, "ToDo Saved Successfully",
-                Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(
+                view, "Task Saved Successfully",
+                Snackbar.LENGTH_SHORT
+            ).show()
 
             view.findNavController().navigate(
-                R.id.action_addToDoFragment_to_toDoListFragment
+                R.id.action_addTaskFragment_to_taskListFragment
             )
 
         } else {
-            val toast = Toast.makeText(activity,
-                "Todo title can not be empty",
+            val toast = Toast.makeText(
+                activity,
+                "Task title can not be empty",
                 Toast.LENGTH_SHORT
             )
             toast.setGravity(Gravity.CENTER, 0, 0)

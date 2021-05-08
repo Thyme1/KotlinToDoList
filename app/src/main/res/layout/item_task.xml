@@ -1,53 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@android:color/white"
+    android:elevation="2dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:cardCornerRadius="10dp">
 
-    <data>
-
-        <variable
-            name="task"
-            type="com.thyme.todolist.data.Task" />
-        <variable
-            name="taskViewModel"
-            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
-
-
-    </data>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/normal_margin"
-        android:layout_margin="@dimen/small_margin"
-        android:background="@drawable/layout_rounded_primary_bg"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <CheckBox
+            android:id="@+id/cbTodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="0" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="@string/todo"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-        android:textSize="@dimen/text_size_bigger"
-        android:textColor="@color/design_default_color_on_primary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_bigger"
-        android:textColor="@color/design_default_color_on_primary"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.cardview.widget.CardView>

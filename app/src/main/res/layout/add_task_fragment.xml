@@ -1,74 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="taskListViewModel"
-            type="com.thyme.todolist.viewmodels.TaskListViewModel" />
-        <variable
-            name="taskListFragment"
-            type="com.thyme.todolist.ui.toDo.list.TaskListFragment" />
-        <variable
-            name="addTaskFragment"
-            type="com.thyme.todolist.ui.main.AddTaskFragment" />
-
-    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.main.AddTaskFragment">
 
 
+    <EditText
+        android:id="@+id/editTextTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/task_name"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
+    <EditText
+        android:id="@+id/editTextTaskDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/task_date"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/editTextTaskTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/task_time"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextTaskDescription"
+        android:layout_width="380dp"
+        android:layout_height="166dp"
+        android:hint="@string/description"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:maxLines="4" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="vertical" >
-
-        <EditText
-            android:id="@+id/editTextTaskName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="@string/task_name"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/editTextTaskDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="@string/task_date"
-            android:importantForAutofill="no"
-            tools:ignore="TextFields" />
-
-        <EditText
-            android:id="@+id/editTextTaskTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:hint="@string/task_time"
-            android:importantForAutofill="no" />
-
-        <EditText
-            android:id="@+id/editTextTaskDescription"
-            android:layout_width="379dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/description"
-            android:inputType="textCapSentences|textMultiLine"
-            android:maxLength="2000"
-            android:maxLines="4" />
+        android:paddingRight="16dp">
 
         <Button
             android:id="@+id/saveButton"
-            android:layout_width="379dp"
-            android:layout_height="204dp"
-            android:layout_weight="1"
+            android:layout_width="174dp"
+            android:layout_height="66dp"
             android:text="@string/add" />
 
-
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="174dp"
+            android:layout_height="66dp"
+            android:text="@string/cancel" />
     </LinearLayout>
-</layout>
+
+
+</LinearLayout>

@@ -3,20 +3,20 @@ package com.thyme.todolist.ui.toDo.list.adapters
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.thyme.todolist.R
 import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.ItemTaskBinding
-import com.thyme.todolist.viewmodels.TaskListViewModel
-
-class TodoAdapter : RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
 
 
-    inner class ToDoViewHolder(val binding: ItemTodoLayoutBinding) :
+
+
+
+class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
+
+    inner class TaskViewHolder(val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     private val differCallback = object : DiffUtil.ItemCallback<Task>() {
@@ -37,20 +37,20 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
             differ.submitList(value)
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
-        return ToDoViewHolder(
-            ItemTodoLayoutBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+        return TaskViewHolder(
+            ItemTaskBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
         )
     }
 
-    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
-        val currentToDo = mTodo[position]
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+        val currentTask = mTodo[position]
 
         holder.binding.apply {
-            textView.text = currentToDo.toDoTitle
+            textView.text = currentTask.name
         }
 
         holder.binding.cbTodo.apply {

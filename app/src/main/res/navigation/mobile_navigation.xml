@@ -21,7 +21,7 @@
         android:name="taskUid"
         app:argType="long" />
     <action
-        android:id="@+id/action_learningFragment_to_subjectListFragment"
+        android:id="@+id/action_addTaskFragment_to_taskListFragment"
         app:destination="@id/taskListFragment"
         app:enterAnim="@animator/slide_in_right"
         app:exitAnim="@animator/slide_out_left"
