@@ -1,8 +1,6 @@
-package com.thyme.todolist.viewmodels
+package com.thyme.todolist.di
 
-import android.app.Application
 import android.content.Context
-import androidx.room.Room
 import com.thyme.todolist.data.AppDatabase
 import com.thyme.todolist.data.dao.TaskDao
 import dagger.Module
@@ -10,9 +8,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

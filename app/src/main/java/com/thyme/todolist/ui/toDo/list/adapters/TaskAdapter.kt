@@ -20,16 +20,16 @@ class TaskAdapter internal constructor(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task = getItem(position)
-        holder.bind(task, mSubjectViewModel)
+        val subject = getItem(position)
+        holder.bind(subject, mSubjectViewModel)
     }
 
     class TaskViewHolder(val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(currentSubject: Task, subjectViewModel: TaskListViewModel) {
-            binding.task = currentSubject
-            binding.taskViewModel = subjectViewModel
+        fun bind(currentTask: Task, taskViewModel: TaskListViewModel) {
+            binding.task = currentTask
+            binding.taskViewModel = taskViewModel
             binding.executePendingBindings()
         }
 

@@ -1,7 +1,6 @@
 package com.thyme.todolist.data
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -11,11 +10,10 @@ import androidx.work.WorkManager
 import com.thyme.todolist.data.dao.TaskDao
 import com.thyme.todolist.utils.DATABASE_NAME
 import com.thyme.todolist.workers.SeedDatabaseWorker
-import kotlinx.coroutines.*
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
-import javax.security.auth.Subject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @Database(entities = [Task::class], version = 1)
