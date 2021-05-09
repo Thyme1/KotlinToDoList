@@ -13,4 +13,5 @@
     <string name="cancel">Cancel</string>
     <string name="no_tasks_available">No tasks available!!!</string>
     <string name="add_button">Add button</string>
+    <string name="clear_all">CLEAR ALL</string>
 </resources>
