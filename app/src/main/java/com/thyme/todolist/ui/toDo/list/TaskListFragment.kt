@@ -13,6 +13,7 @@ import com.thyme.todolist.data.Task
 import com.thyme.todolist.databinding.FragmentTaskListBinding
 import com.thyme.todolist.ui.toDo.list.adapters.TaskAdapter
 import com.thyme.todolist.viewmodels.AddTaskViewModel
+import com.thyme.todolist.viewmodels.TaskListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -23,6 +24,7 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
     private val binding get() = _binding!!
     private lateinit var todoAdapter: TaskAdapter
     private val viewModel: AddTaskViewModel by viewModels()
+    private val taskListViewModel: TaskListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +48,15 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
                 R.id.action_taskListFragment_to_addTaskFragment
             )
         }
+
+        binding.fabClearAllTasks.setOnClickListener {
+            removeData()
+
+
+        }
+
     }
+
 
     private fun setupRecyclerView() {
 
@@ -71,6 +81,10 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
             binding.rvTodoList.visibility = View.GONE
             binding.cardView.visibility = View.VISIBLE
         }
+    }
+
+    fun removeData() {
+        taskListViewModel.deleteAll()
     }
 
 

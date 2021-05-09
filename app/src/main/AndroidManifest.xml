@@ -8,13 +8,16 @@
         android:name="com.thyme.todolist.MainApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:allowBackup="false"
 
         android:theme="@style/Theme.ToDoList"
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name="com.thyme.todolist.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

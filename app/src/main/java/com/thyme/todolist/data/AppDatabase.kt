@@ -7,7 +7,7 @@ import com.thyme.todolist.data.dao.TaskDao
 
 @Database(
     entities = [Task::class],
-    version = 2, exportSchema = false
+    version = 3, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 

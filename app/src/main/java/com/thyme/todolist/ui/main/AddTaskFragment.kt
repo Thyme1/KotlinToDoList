@@ -17,6 +17,7 @@ import com.thyme.todolist.viewmodels.AddTaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+
 class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
 
     private var _binding: AddTaskFragmentBinding? = null
@@ -48,16 +49,16 @@ class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
     }
 
     private fun saveNote(view: View) {
-        val todoName = binding.editTextTaskName.text.toString()
+        val taskName = binding.editTextTaskName.text.toString()
         val taskDescription = binding.editTextTaskDescription.text.toString()
         val taskDate = binding.editTextTaskDate.text.toString()
         val taskTime = binding.editTextTaskTime.text.toString()
 
 
-        if (todoName.isNotEmpty()) {
+        if (taskName.isNotEmpty()) {
             val todo = Task(
                 0,
-                name = todoName,
+                name = taskName,
                 date = taskDate,
                 time = taskTime,
                 description = taskDescription

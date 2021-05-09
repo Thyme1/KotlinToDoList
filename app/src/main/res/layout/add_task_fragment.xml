@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_green"
+    android:label="@string/app_name"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".ui.main.AddTaskFragment">
@@ -42,14 +43,16 @@
         android:id="@+id/editTextTaskDescription"
         android:layout_width="380dp"
         android:layout_height="166dp"
-        android:hint="@string/description"
         android:gravity="top"
+        android:hint="@string/description"
 
+        android:importantForAutofill="no"
         android:inputType="textCapSentences|textMultiLine"
         android:maxLength="2000"
         android:maxLines="4" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:label="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
