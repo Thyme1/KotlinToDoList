@@ -62,9 +62,17 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
                     if (isChecked) {
                         textView.paintFlags =
                             textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        taskDate.paintFlags =
+                            textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                        taskTime.paintFlags =
+                            textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                     } else {
                         textView.paintFlags =
                             textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                        taskDate.paintFlags =
+                            textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                        taskTime.paintFlags =
+                            textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG.inv()
                     }
                 }
             }
