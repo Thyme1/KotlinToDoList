@@ -39,7 +39,7 @@
             android:maxLines="1"
             android:text="@string/todo"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
         <TextView
             android:id="@+id/taskTime"
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:maxLines="1"
             android:text="@string/todo"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 

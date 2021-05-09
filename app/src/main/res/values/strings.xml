@@ -10,7 +10,7 @@
     <string name="task_time">Task Time</string>
     <string name="task_name">Task Name</string>
     <string name="description">description</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="no_tasks_available">No tasks available!!!</string>
     <string name="add_button">Add button</string>
 </resources>
