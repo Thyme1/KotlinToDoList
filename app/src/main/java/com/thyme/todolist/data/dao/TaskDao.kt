@@ -25,7 +25,7 @@ interface TaskDao {
     fun deleteTask(task: Task)
 
     @Query("DELETE FROM task_table")
-     fun deleteAll()
+    fun deleteAll()
 
     @Query("SELECT * FROM task_table ORDER BY name ASC ")
     fun getAllTasks(): Flow<List<Task>>

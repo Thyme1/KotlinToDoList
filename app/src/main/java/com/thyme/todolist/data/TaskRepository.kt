@@ -16,5 +16,4 @@ constructor(private val taskDao: TaskDao) {
     fun deleteAllTasks() = taskDao.deleteAll()
 
 
-
 }

@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">ToDoList</string>
     <string name="todo">Todo</string>
-
-
     <string name="add">ADD</string>
-
     <string name="clear">Clear</string>
     <string name="task_date">Task Date</string>
     <string name="task_time">Task Time</string>
