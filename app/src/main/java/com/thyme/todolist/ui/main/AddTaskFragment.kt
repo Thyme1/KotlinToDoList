@@ -49,9 +49,19 @@ class AddTaskFragment : Fragment(R.layout.add_task_fragment) {
 
     private fun saveNote(view: View) {
         val todoName = binding.editTextTaskName.text.toString()
+        val taskDescription = binding.editTextTaskDescription.text.toString()
+        val taskDate = binding.editTextTaskDate.text.toString()
+        val taskTime = binding.editTextTaskTime.text.toString()
+
 
         if (todoName.isNotEmpty()) {
-            val todo = Task(0, todoName)
+            val todo = Task(
+                0,
+                name = todoName,
+                date = taskDate,
+                time = taskTime,
+                description = taskDescription
+            )
 
             viewModel.insertTask(todo)
 

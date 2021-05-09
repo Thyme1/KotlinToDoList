@@ -6,4 +6,6 @@
     <item name="editTextTaskDate" type="id" />
     <item name="editTextTaskTime" type="id" />
     <item name="saveButton" type="id" />
+    <item name="tv_no_atsk_available" type="id" />
+    <item name="cardView" type="id" />
 </resources>

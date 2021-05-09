@@ -51,6 +51,9 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
         holder.binding.apply {
             textView.text = currentTask.name
+            taskDate.text = currentTask.date
+            taskTime.text = currentTask.time
+
         }
 
         holder.binding.cbTodo.apply {

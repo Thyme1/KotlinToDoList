@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class Task (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    var name: String
-//    var date: String,
-//    var description: String,
-//    var time: String
+    var name: String,
+    var date: String,
+    var description: String,
+    var time: String
 
 )
